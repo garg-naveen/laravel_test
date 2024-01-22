@@ -1,0 +1,41 @@
+<h1>User List</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+			<th scope="col">Username</th>
+			<th scope="col">Email</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@defer (on timer(5s)) {
+			<!-- <calendar-cmp /> -->
+
+			@for(user of users; track user.id; let i = $index) {
+				<tr>
+					<th scope="row">{{ i + 1 }}</th>
+					<td>
+						{{ user.name }}
+					</td>
+					<td>{{ user.username }}</td>
+					<td>{{ user.email }}</td>
+
+					<td>
+						<a [routerLink]="['/users/',user.id,'posts']">array Posts</a>
+					</td>
+				</tr>
+			}
+			@empty {
+				No users found.
+			}
+		} @placeholder {
+			Fetching users list...
+		} @loading {
+			Loading...
+		}
+	</tbody>
+</table>

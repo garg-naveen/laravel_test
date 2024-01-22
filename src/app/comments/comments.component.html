@@ -1,0 +1,30 @@
+<h1>Post Comments</h1>
+
+<button type="button" (click)="goBack()">go back</button>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+			<th scope="col">Email</th>
+			<th scope="col">Body</th>
+		</tr>
+	</thead>
+	<tbody>
+
+        @for(post of comments; track post.id; let i = $index) {
+			<tr>
+				<th scope="row">{{ i + 1 }}</th>
+				<td>
+					{{ post.name }}
+				</td>
+				<td>{{ post.email }}</td>
+				<td>{{ post.body }}</td>
+			</tr>
+        }
+		@empty {
+			No comments found.
+		}
+	</tbody>
+</table>
