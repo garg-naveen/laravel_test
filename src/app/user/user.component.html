@@ -12,7 +12,7 @@
 	</thead>
 	<tbody>
 
-		@defer (on timer(5s)) {
+		@defer (on timer(1s)) {
 			<!-- <calendar-cmp /> -->
 
 			@for(user of users; track user.id; let i = $index) {
@@ -25,17 +25,12 @@
 					<td>{{ user.email }}</td>
 
 					<td>
-						<a [routerLink]="['/users/',user.id,'posts']">array Posts</a>
+						<a [routerLink]="['/users/',user.id,'posts']">View Posts</a>
 					</td>
 				</tr>
 			}
-			@empty {
-				No users found.
-			}
 		} @placeholder {
-			Fetching users list...
-		} @loading {
-			Loading...
+			Fetching users...
 		}
 	</tbody>
 </table>
