@@ -27,7 +27,7 @@ class CommentController extends Controller
             return ['error' => 'Post id is required or you passed not a valid value.'];
         }
 
-        $client   = new Client(['verify' => false]);
+        $client   = new Client();
         $response = $client->get($apiBASEURL . "comments?postId=$postId");
 
         return $response->getBody()->getContents();

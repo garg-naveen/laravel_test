@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\CommentController;
 
@@ -27,10 +28,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     });
 // });
 
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
-    Route::apiResource('/users', UserController::class);
+
+Route::group(['middleware'=> 'auth:sanctum', 'prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
+    // Route::apiResource('/users', UserController::class);
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/logout', [UserController::class, 'logout'])->name('users.logout');
 
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
     Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+
+});
+
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
+    Route::post('/register',[UserController::class,'register'])->name('users.register');
+    Route::post('/token',  [UserController::class, 'getToken'])->name('users.getToken');
 });
 

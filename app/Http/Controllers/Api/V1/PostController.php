@@ -27,7 +27,7 @@ class PostController extends Controller
             return ['error' => 'User id is required or you passed not a valid value.'];
         }
 
-        $client   = new Client(['verify' => false]);
+        $client   = new Client();
         $response = $client->get($apiBASEURL . "posts?userId=$userId");
 
         return $response->getBody()->getContents();
