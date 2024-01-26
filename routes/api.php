@@ -32,12 +32,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware'=> 'auth:sanctum', 'prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
     // Route::apiResource('/users', UserController::class);
 
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::post('/logout', [UserController::class, 'logout'])->name('users.logout');
+    Route::post('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::post('/comments', [CommentController::class, 'index'])->name('comments.index');
 
-    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-    Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
-
+    Route::post('/logout', [UserController::class, 'logout'])->name('users.logout');    
 });
 
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
