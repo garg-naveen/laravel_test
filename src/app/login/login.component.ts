@@ -18,6 +18,6 @@ export class LoginComponent {
 
   userLogin(data:any){
     this.authService.getToken(data)
-    this.router.navigate(['/dashboard', { }]);
+    this.router.navigate(['dashboard', { }]);
   }
 }

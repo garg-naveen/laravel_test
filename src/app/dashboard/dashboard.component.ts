@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
 
-  constructor(public authService:AuthService) {}
+  isAuthenticated$;
+  constructor(public authService:AuthService) {
+    this.isAuthenticated$ = this.authService.isAuthentication;
+  }
 
 }

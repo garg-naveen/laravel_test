@@ -1,7 +1,7 @@
 <div class="parent">
   <div class="container">
 
-      <div *ngIf="authService.session">
+      <div *ngIf="(isAuthenticated$ | async)">
         <h1> Welcome to Dashboard </h1>
       </div>
 

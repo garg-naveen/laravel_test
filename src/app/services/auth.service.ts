@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, share } from 'rxjs';
 
 @Injectable({
@@ -7,26 +8,39 @@ import { BehaviorSubject, share } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1';
-  session: any;
 
-  constructor(private http: HttpClient) {
-    let session = localStorage.getItem("token");
-    if (session) this.session = session
+  isAuthentication: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+
+  constructor(private http: HttpClient, private router:Router) {
+    const token = this.getAuthToken()
+    if (token) {
+      this.updateToken(true);
+    }
+  }
+
+  updateToken(status: boolean) {
+    this.isAuthentication.next(status);
   }
 
   //get token
-  getToken(data:any) {
+  getToken(data:any){
     this.http.post(this.apiUrl + '/token', data)
     .pipe(share())
     .subscribe((result:any) => {
-      this.session = result;
+      this.updateToken(true);
       localStorage.setItem("token", result.access_token);
 		})
   }
 
+  getAuthToken(){
+    return localStorage.getItem("token");
+  }
+
   logout(){
-    this.session = undefined
+    this.updateToken(false);
     localStorage.removeItem("token");
+
+    this.router.navigate(['login']);
   }
 
   //register
@@ -34,8 +48,5 @@ export class AuthService {
     return this.http.post(this.apiUrl + '/register', data).subscribe((result:any) => {
       return result;
 		})
-
-    // return this.http.post(this.apiUrl + '/register', data)
-    // .pipe(catchError((err) => of(err)));
   }
 }
