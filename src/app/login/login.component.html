@@ -1,11 +1,20 @@
-<div class="container">
+<div class="parent">
+  <div class="container">
 
-    <form #login="ngForm" (ngSubmit)="userLogin(login.value)" class="form-signin">
-      <h2 class="form-signin-heading">Please sign in</h2>
-      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus ngModel>
-      <br />
-      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required ngModel>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+      <form #login="ngForm" *ngIf="!authService.session" (ngSubmit)="userLogin(login.value)" class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus ngModel>
+        <br />
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required ngModel>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
 
-  </div>
+      <div *ngIf="authService.session">
+        <h1> Welcome </h1>
+      </div>
+
+    </div>
+</div>
+
+
+

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +11,11 @@ import { UserService } from '../services/user.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  constructor(public userService:UserService) {}
+  constructor(public authService:AuthService, private router:Router) {}
 
   userRegister(data:any){
-    this.userService.register(data)
+    this.authService.regiter(data)
+
+    this.router.navigate(['/login', { }]);
   }
 }
