@@ -14,12 +14,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent {
 
   session: any;
-  constructor(public authService:AuthService, private router:Router) {
-    // let session = localStorage.getItem("token");
-    // if (session) {
-    //   this.session = session
-    // }
-  }
+  constructor(public authService:AuthService, private router:Router) {}
 
   userLogin(data:any){
     this.authService.getToken(data)

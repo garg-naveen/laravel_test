@@ -13,17 +13,9 @@ import { Observable } from 'rxjs';
 })
 export class NavbarComponent {
   session: any;
-  constructor(public authService:AuthService, private router:Router) {
-    // let session = localStorage.getItem("token");
-    // if (session) {
-    //   this.session = session
-    // }
-  }
+  constructor(public authService:AuthService, private router:Router) {}
 
-  ngOnInit(){
-    // this.LoginStatus$ = this.authService.getIsLoggedIn;
-    console.log(this.authService.session, 'Naveen')
-  }
+  ngOnInit(){}
 
   userLogout(){
     this.authService.logout();

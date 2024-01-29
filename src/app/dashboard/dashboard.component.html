@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<div class="parent">
+  <div class="container">
+
+      <div *ngIf="authService.session">
+        <h1> Welcome to Dashboard </h1>
+      </div>
+
+    </div>
+</div>
