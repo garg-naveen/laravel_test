@@ -2,8 +2,6 @@
 For using this app you just need to follow these stpes.
 
 ### You have to just follow a few steps to get following web services
-##### Login API
-##### Details API
 
 
 
