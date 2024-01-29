@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
+import { guestGuard } from './guards/guest.guard';
 
  export const routes: Routes = [
     {
@@ -15,7 +16,8 @@ import { authGuard } from './guards/auth.guard';
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [guestGuard]
     },
     {
         path: 'dashboard',
@@ -24,7 +26,8 @@ import { authGuard } from './guards/auth.guard';
     },
     {
         path: 'register',
-        component: RegisterComponent
+        component: RegisterComponent,
+        canActivate: [guestGuard]
     },
     {
         path: 'users',
