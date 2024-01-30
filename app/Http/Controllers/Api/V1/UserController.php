@@ -82,6 +82,6 @@ class UserController extends Controller
             'success' => true,
             'message' => 'User Created ',
             'errors' => ''
-        ]);
+        ], 201);
     }
 }
