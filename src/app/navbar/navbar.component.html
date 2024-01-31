@@ -8,17 +8,20 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           @if (isAuthenticated$ | async) {
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="/users">Users</a>
+              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page" routerLink="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <button class="nav-link" aria-current="page" (click)="userLogout()">Logout</button>
+              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page" routerLink="/users">Users</a>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page" (click)="userLogout()">Logout</button>
             </li>
           } @else {
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" routerLink="/login">Login</a>
+              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page" routerLink="/login">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" routerLink="/register">Register</a>
+              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page" routerLink="/register">Register</a>
             </li>
           }
         </ul>

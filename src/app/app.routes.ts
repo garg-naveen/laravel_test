@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { guestGuard } from './guards/guest.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
  export const routes: Routes = [
     {
@@ -16,36 +17,43 @@ import { guestGuard } from './guards/guest.guard';
     },
     {
         path: 'login',
+        title: 'Login',
         component: LoginComponent,
         canActivate: [guestGuard]
     },
     {
         path: 'dashboard',
+        title: 'Dashboard',
         component: DashboardComponent,
         canActivate: [authGuard]
     },
     {
         path: 'register',
+        title: 'Register',
         component: RegisterComponent,
         canActivate: [guestGuard]
     },
     {
         path: 'users',
+        title: 'Users',
         component: UserComponent,
         canActivate: [authGuard]
     },
     {
         path: 'users/:userId/posts',
+        title: 'posts',
         component: PostsComponent,
         canActivate: [authGuard]
     },
     {
         path: 'users/:userId/comments',
+        title: 'Comments',
         component: CommentsComponent,
         canActivate: [authGuard]
     },
     {
       path: '**',
-      component: LoginComponent
+      title: '404 Not Found',
+      component: PageNotFoundComponent
     }
 ];

@@ -22,9 +22,9 @@ export class AuthService {
     this.isAuthentication.next(status);
   }
 
-  //get token
+  //get fresh token from api
   getToken(data:any){
-    this.http.post(this.apiUrl + '/token', data)
+    return this.http.post(this.apiUrl + '/token', data)
     .pipe(share())
     .subscribe((result:any) => {
       this.updateToken(true);
@@ -32,6 +32,7 @@ export class AuthService {
 		})
   }
 
+  //get token from local storage
   getAuthToken(){
     return localStorage.getItem("token");
   }
